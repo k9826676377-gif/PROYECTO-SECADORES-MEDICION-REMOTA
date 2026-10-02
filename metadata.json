@@ -1,0 +1,6 @@
+{
+  "name": "Monitor de Vibraciones - Secado Máquina Papelera",
+  "description": "Sistema de gestión y seguimiento de avance de instalación de puntos de medición remota de vibraciones en rodillos secadores, lonas y piñones intermedios distribuidos en 3 cajas de conexiones.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

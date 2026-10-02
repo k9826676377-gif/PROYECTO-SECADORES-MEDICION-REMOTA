@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0.0",
+  "entities": {
+    "points": {
+      "description": "Puntos de medición de vibración en secadores, rodillos y piñones",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador único del punto" },
+        "tag": { "type": "string", "description": "Nomenclatura técnica (1S..48S, 1R..83R, P-AA..P-XXIX)" },
+        "name": { "type": "string", "description": "Nombre del equipo o componente" },
+        "type": { "type": "string", "description": "Tipo de equipo: dryer, felt_roll_upper, felt_roll_pocket, pinion" },
+        "boxId": { "type": "string", "description": "Caja de conexiones asignada (JB #1, JB #2, JB #3)" },
+        "boxChannel": { "type": "number", "description": "Canal en la caja de conexiones" },
+        "stages": { "type": "object", "description": "Etapas físicas de instalación (sensorMounted, cablePulled, connectedToJB, biasVerified)" },
+        "status": { "type": "string", "description": "Estado general: pending, in_progress, installed, verified" },
+        "condition": { "type": "string", "description": "Condición del componente: nuevo o viejo" },
+        "mountingType": { "type": "string", "description": "Método de montaje: disco o perforacion" },
+        "biasVoltage": { "type": "number", "description": "Voltaje BIAS registrado en voltios DC" },
+        "sensorSerial": { "type": "string", "description": "Número de serie del acelerómetro" },
+        "cableLength": { "type": "number", "description": "Metros de cable tendido" },
+        "technician": { "type": "string", "description": "Técnico o especialista asignado" },
+        "lastUpdated": { "type": "string", "description": "Timestamp ISO de la última modificación" }
+      },
+      "constraints": "Acceso colaborativo de lectura y escritura para acceso universal en planta"
+    },
+    "materials": {
+      "description": "Inventario de materiales para la instrumentación",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador del material" },
+        "code": { "type": "string", "description": "Código SAP o interno" },
+        "description": { "type": "string", "description": "Descripción del ítem" },
+        "unit": { "type": "string", "description": "Unidad de medida" },
+        "quantityNeeded": { "type": "number", "description": "Cantidad presupuestada" },
+        "quantityInstalled": { "type": "number", "description": "Cantidad instalada en campo" },
+        "quantityInStock": { "type": "number", "description": "Stock en almacén" },
+        "category": { "type": "string", "description": "Categoría de material" }
+      },
+      "constraints": "Control de inventario sincronizado"
+    },
+    "junction_boxes": {
+      "description": "Cajas de conexiones JB #1, JB #2 y JB #3",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador de la caja" },
+        "name": { "type": "string", "description": "Nombre de la caja" },
+        "location": { "type": "string", "description": "Ubicación física en planta" },
+        "totalChannels": { "type": "number", "description": "Capacidad de canales" },
+        "usedChannels": { "type": "number", "description": "Canales ocupados" },
+        "status": { "type": "string", "description": "Estado de la caja" }
+      },
+      "constraints": "Lectura y actualización de estado de cajas"
+    },
+    "costs": {
+      "description": "Categorías de costos y presupuesto del proyecto M4",
+      "properties": {
+        "id": { "type": "string", "description": "Identificador de categoría" },
+        "name": { "type": "string", "description": "Nombre de la partida" },
+        "budgeted": { "type": "number", "description": "Presupuesto asignado" },
+        "committed": { "type": "number", "description": "Comprometido" },
+        "actual": { "type": "number", "description": "Ejecutado" }
+      },
+      "constraints": "Lectura y actualización de presupuesto"
+    },
+    "project_meta": {
+      "description": "Metadatos y sincronización de última versión del proyecto",
+      "properties": {
+        "lastSynced": { "type": "string", "description": "Timestamp de última sincronización" },
+        "version": { "type": "number", "description": "Versión del esquema" }
+      },
+      "constraints": "Metadatos de sincronización entre computadores"
+    }
+  },
+  "securityRules": {
+    "points": { "read": "true", "write": "true" },
+    "materials": { "read": "true", "write": "true" },
+    "junction_boxes": { "read": "true", "write": "true" },
+    "costs": { "read": "true", "write": "true" },
+    "project_meta": { "read": "true", "write": "true" }
+  }
+}

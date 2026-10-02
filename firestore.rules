@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Permite lectura y escritura abierta de los datos del proyecto de monitoreo
+    // para sincronización en tiempo real entre cualquier computador de la planta.
+    match /points/{pointId} {
+      allow read, write: if true;
+    }
+    match /materials/{materialId} {
+      allow read, write: if true;
+    }
+    match /junction_boxes/{boxId} {
+      allow read, write: if true;
+    }
+    match /costs/{costId} {
+      allow read, write: if true;
+    }
+    match /project_meta/{metaId} {
+      allow read, write: if true;
+    }
+  }
+}
